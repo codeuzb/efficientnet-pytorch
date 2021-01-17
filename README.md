@@ -49,3 +49,33 @@ You can easily change the model's parameters according to these versions below.<
 ```buildoutcfg
 model = EfficientNet(num_classes=1000, width_coefficient=1.0, depth_coefficient=1.0, dropout_rate=0.2)
 ```
+## Using EfficientNet as a Feature Extractor
+In order to use as a feature extractor, some part of the code need to be taken in to comment.<br>
+Find the following part of the code from `efficient.py` and change it as following:<br>
+```buildoutcfg
+# Define head
+        self.head = nn.Sequential(
+            nn.Conv2d(list_channels[-2], list_channels[-1],
+                      kernel_size=1, bias=False),
+            nn.BatchNorm2d(list_channels[-1], momentum=0.01, eps=1e-3),
+            Swish(),
+            nn.AdaptiveAvgPool2d(1),
+            Flatten(),
+            nn.Dropout(p=dropout_rate),
+            nn.Linear(list_channels[-1], num_classes)
+        )
+```
+Changed:
+```buildoutcfg
+# Define head
+        self.head = nn.Sequential(
+            nn.Conv2d(list_channels[-2], list_channels[-1],
+                      kernel_size=1, bias=False),
+            nn.BatchNorm2d(list_channels[-1], momentum=0.01, eps=1e-3),
+            Swish(),
+          # nn.AdaptiveAvgPool2d(1),
+          # Flatten(),
+          # nn.Dropout(p=dropout_rate),
+          # nn.Linear(list_channels[-1], num_classes)
+        )
+```
