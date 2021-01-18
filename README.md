@@ -1,4 +1,4 @@
-# EfficientNet with PyTorch
+# EfficientNet PyTorch
 
 ## Results on ImageNet benchmark
 ![EfficientNet results on ImageNet ](images/benchmark.png)
