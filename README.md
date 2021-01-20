@@ -79,3 +79,6 @@ Changed:
           # nn.Linear(list_channels[-1], num_classes)
         )
 ```
+## Reference
+1. [EfficientNet-PyTorch](https://github.com/lukemelas/EfficientNet-PyTorch)
+2. Unknown(couldn't find)
